@@ -41,7 +41,7 @@ jobs:
         BRANCH: gh-pages
         FOLDER: docs-dist
         REPOSITORY_NAME: happy-func/react-swim-button
-        TARGET_FOLDER: /
+        TARGET_FOLDER: ./
 
       env:
         CI: true
