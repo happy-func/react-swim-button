@@ -40,7 +40,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
         BRANCH: gh-pages
         FOLDER: docs-dist
-        REPOSITORY_NAME: hefeng6500/hefeng6500.github.io
+        REPOSITORY_NAME: react-swim-button
         TARGET_FOLDER: react-swim-button
 
       env:
