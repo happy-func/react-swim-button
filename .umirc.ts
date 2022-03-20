@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  publicPath: '/react-swim-button/',
+  publicPath: './',
   hash: true,
   title: 'SwimButton',
   favicon:
