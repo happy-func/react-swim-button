@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "react-swim-button",
+  "license": "MIT",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
