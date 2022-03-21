@@ -48,5 +48,22 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happy-func/react-swim-button.git"
+  },
+  "files": [
+    "es"
+  ],
+  "keywords": [
+    "react",
+    "button",
+    "swim"
+  ],
+  "author": "happy-func",
+  "bugs": {
+    "url": "https://github.com/happy-func/react-swim-button/issues"
+  },
+  "homepage": "https://github.com/happy-func/react-swim-button#readme"
 }
