@@ -26,6 +26,7 @@ export default () => {
     <div>
       {texts.map((text , index) => (
         <ReactSwimButton
+          key={text}
           active={activeAt === text}
           loading={index === 0}
           style={{marginRight: 16}}
