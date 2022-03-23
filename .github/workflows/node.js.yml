@@ -11,8 +11,6 @@ name: release blog to hefeng6500.github.io
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build:
