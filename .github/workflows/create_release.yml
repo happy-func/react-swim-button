@@ -25,10 +25,11 @@ jobs:
         run: |
           yarn
           yarn build
+          tar -zcvf release.tar.gz es
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: "es/**"
+          files: "release.tar.gz"
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_KEY }}

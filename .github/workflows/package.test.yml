@@ -6,10 +6,10 @@
 # This workflow will install Deno and run tests across stable and nightly builds on Windows, Ubuntu and macOS.
 # For more information see: https://github.com/denolib/setup-deno
 
-name: release docs to github pages
+name: test package
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
 jobs:
@@ -31,15 +31,6 @@ jobs:
     - name: yarn install, build
       run: |
         yarn
+        yarn build
+        yarn test
         yarn docs:build
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
-        BRANCH: gh-pages
-        FOLDER: docs-dist
-        REPOSITORY_NAME: happy-func/react-swim-button
-        TARGET_FOLDER: ./
-
-      env:
-        CI: true
