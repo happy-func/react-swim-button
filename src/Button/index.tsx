@@ -1,96 +1,24 @@
 import TWEEN from '@tweenjs/tween.js';
-import styled, { keyframes } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import React, { CSSProperties, ReactElement, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-
-const StyledReactSwimButton = styled.div`
-  &.swim-button-box {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 48px;
-    padding: 0 24px;
-    overflow: hidden;
-    color: #858b9b;
-    font-size: 14px;
-    line-height: 48px;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 3px 12px rgba(188, 193, 205, 0.3);
-    cursor: pointer;
-    transition-timing-function: ease;
-    transition-duration: 0.25s;
-    transition-property: color;
-    user-select: none;
-    &:hover {
-      color: #fff;
-    }
-    &-active {
-      color: #fff;
-      background-color: #2b65f4;
-      border: 1px solid #2b65f4;
-      &:hover {
-        color: #2b65f4;
-      }
-      &.swim-button-box > .swim-button-wave {
-        background-color: #fff;
-      }
-    }
-    .swim-button {
-      position: relative;
-      display: block;
-      width: 100%;
-      height: 100%;
-      color: inherit;
-      background-color: transparent;
-      border-width: 0;
-      cursor: pointer;
-    }
-    .swim-button-icon {
-      margin-right: 8px;
-    }
-    .swim-button-wave {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      background-color: #2b65f4;
-    }
-  }
-`;
-
-const rotate = keyframes`
-  100% {
-    transform: rotate(360deg);
-  }
-`;
-
-const StyledSpan = styled.span`
-  &.swim-button-loading {
-    display: inline-block;
-    color: inherit;
-    font-style: normal;
-    line-height: 0;
-    text-align: center;
-    text-transform: none;
-    vertical-align: -0.125em;
-    animation: ${rotate} 1s infinite linear;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
-`;
+import StyledButton from './StyledButton';
+import StyledButtonBox from './StyledButtonBox';
+import StyledButtonIcon from './StyledButtonIcon';
+import StyledButtonWave from './StyledButtonWave';
+import StyledLoading from './StyledLoading';
 
 export default function ReactSwimButton(props: IProps) {
-  const { active, onClick, children, className, style, icon, loading } = props;
-  const water = useRef(null);
+  const { primary = `#2b65f4`, active, onClick, children, className, style, icon, loading } = props;
+  const waveRef = useRef(null);
   function animate(time: number | undefined) {
     requestAnimationFrame(animate);
     TWEEN.update(time);
   }
   function updateProperty(coords: { width: number }) {
-    if (water.current) {
+    if (waveRef.current) {
       // @ts-ignore
-      water.current.style.setProperty('width', `${coords.width}%`);
+      waveRef.current.style.setProperty('width', `${coords.width}%`);
     }
   }
   function _onMouseEnter() {
@@ -100,9 +28,9 @@ export default function ReactSwimButton(props: IProps) {
       .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
       .onUpdate(updateProperty);
     // @ts-ignore
-    water.current.style.removeProperty('right');
+    waveRef.current.style.removeProperty('right');
     // @ts-ignore
-    water.current.style.setProperty('left', `0px`);
+    waveRef.current.style.setProperty('left', `0px`);
     tween.start();
   }
   function _onMouseLeave() {
@@ -112,9 +40,9 @@ export default function ReactSwimButton(props: IProps) {
       .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
       .onUpdate(updateProperty);
     // @ts-ignore
-    water.current.style.removeProperty('left');
+    waveRef.current.style.removeProperty('left');
     // @ts-ignore
-    water.current.style.setProperty('right', `0px`);
+    waveRef.current.style.setProperty('right', `0px`);
     tween.start();
   }
   function _onClick() {
@@ -125,32 +53,36 @@ export default function ReactSwimButton(props: IProps) {
     requestAnimationFrame(animate);
   }, []);
   return (
-    <StyledReactSwimButton
-      className={clsx('swim-button-box', className, {
-        ['swim-button-box-active']: active,
-      })}
-      onMouseEnter={_onMouseEnter}
-      onMouseLeave={_onMouseLeave}
-      onClick={_onClick}
-      style={style}
-    >
-      <div ref={water} className={clsx('swim-button-wave')} style={{ left: 0 }} />
-      <span className={clsx('swim-button')}>
-        {icon && !loading && <span className={clsx('swim-button-icon')}>{icon}</span>}
-        {loading && (
-          <span className={clsx('swim-button-icon')}>
-            <Loading />
-          </span>
-        )}
-        {children}
-      </span>
-    </StyledReactSwimButton>
+    <ThemeProvider theme={{ primary, active }}>
+      <StyledButtonBox
+        className={clsx('swim-button-box', className, {
+          ['swim-button-box-active']: active,
+        })}
+        onMouseEnter={_onMouseEnter}
+        onMouseLeave={_onMouseLeave}
+        onClick={_onClick}
+        style={style}
+      >
+        <StyledButtonWave ref={waveRef} className={clsx('swim-button-wave')} style={{ left: 0 }} />
+        <StyledButton className={clsx('swim-button')}>
+          {icon && !loading && (
+            <StyledButtonIcon className={clsx('swim-button-icon')}>{icon}</StyledButtonIcon>
+          )}
+          {loading && (
+            <StyledButtonIcon className={clsx('swim-button-icon')}>
+              <Loading />
+            </StyledButtonIcon>
+          )}
+          {children}
+        </StyledButton>
+      </StyledButtonBox>
+    </ThemeProvider>
   );
 }
 
 function Loading() {
   return (
-    <StyledSpan role="img" className={clsx('swim-button-loading')}>
+    <StyledLoading role="img" className={clsx('swim-button-loading')}>
       <svg
         viewBox="0 0 1024 1024"
         focusable="false"
@@ -162,16 +94,41 @@ function Loading() {
       >
         <path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z" />
       </svg>
-    </StyledSpan>
+    </StyledLoading>
   );
 }
 
-interface IProps {
+export interface IProps {
+  /**
+   * @description       set primary color
+   * @default           #2b65f4
+   */
+  primary?: string;
+  /**
+   * @description       set tab active
+   * @default           undefined
+   */
   active?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
+  /**
+   * @description       set custom className to button box
+   * @default           undefined
+   */
   className?: string;
+  /**
+   * @description       set custom style to button box
+   * @default           undefined
+   */
   style?: CSSProperties;
+  /**
+   * @description       custom icon render
+   * @default           undefined
+   */
   icon?: ReactElement;
+  /**
+   * @description       show default loading icon
+   * @default           undefined
+   */
   loading?: boolean;
 }
