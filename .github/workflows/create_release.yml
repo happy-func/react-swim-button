@@ -25,6 +25,7 @@ jobs:
         run: |
           yarn
           yarn build
+          tar -zcvf release.tar.gz es
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
