@@ -9,8 +9,10 @@
 name: test package
 
 on:
+  push:
+    branches: [main, 'releases/**']
   pull_request:
-    branches: [main]
+    branches: [main, 'releases/**']
 
 jobs:
   build:
@@ -28,7 +30,7 @@ jobs:
       with:
         node-version: 16.x
 
-    - name: yarn install, build
+    - name: yarn install, build, test, docs:build
       run: |
         yarn
         yarn build
