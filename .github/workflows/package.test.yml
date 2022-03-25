@@ -9,8 +9,10 @@
 name: test package
 
 on:
+  push:
+    branches: [main, 'releases/**']
   pull_request:
-    branches: [main]
+    branches: [main, 'releases/**']
 
 jobs:
   build:
