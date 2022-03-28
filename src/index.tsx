@@ -8,7 +8,7 @@ import StyledButtonIcon from './StyledButtonIcon';
 import StyledButtonWave from './StyledButtonWave';
 import StyledLoading from './StyledLoading';
 
-export default function ReactSwimButton(props: IProps) {
+function ReactSwimButton(props: ReactSwimButtonProps) {
   const { primary = `#2b65f4`, active, onClick, children, className, style, icon, loading } = props;
   const waveRef = useRef(null);
   function animate(time: number | undefined) {
@@ -98,7 +98,7 @@ function Loading() {
   );
 }
 
-export interface IProps {
+export interface ReactSwimButtonProps {
   /**
    * @description       set primary color
    * @default           #2b65f4
@@ -132,3 +132,5 @@ export interface IProps {
    */
   loading?: boolean;
 }
+
+export default ReactSwimButton;

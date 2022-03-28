@@ -13,7 +13,7 @@ $ npm i react-swim-button
 $ yarn add react-swim-button
 ```
 
-<API src="../src/Button/index.tsx"></API>
+<API src="../src/index.tsx"></API>
 
 ## Usage
 
@@ -57,6 +57,7 @@ export default () => {
     <div>
       {Array.from({ length: 2 }).map((_, index) => (
         <ReactSwimButton
+          key={index}
           primary="#ff7426"
           active={activeAt === index}
           style={{ marginRight: 16 }}
