@@ -73,7 +73,7 @@ export default function ReactSwimButton(props: IProps) {
               <Loading />
             </StyledButtonIcon>
           )}
-          {children}
+          <span className="swim-button-text">{children}</span>
         </StyledButton>
       </StyledButtonBox>
     </ThemeProvider>

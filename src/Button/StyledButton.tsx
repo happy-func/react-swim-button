@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const StyledButton = styled.span`
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
   color: inherit;
