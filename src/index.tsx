@@ -18,7 +18,7 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
     style,
     icon,
     loading,
-    duration = 125,
+    duration = 250,
   } = props;
   const waveRef = useRef(null);
   function animate(time: number | undefined) {
@@ -142,8 +142,8 @@ export interface ReactSwimButtonProps {
    */
   loading?: boolean;
   /**
-   * @description       wave animation duration
-   * @default           125
+   * @description       wave animation duration(ms)
+   * @default           250
    */
   duration?: number;
 }
