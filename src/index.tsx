@@ -9,7 +9,17 @@ import StyledButtonWave from './StyledButtonWave';
 import StyledLoading from './StyledLoading';
 
 function ReactSwimButton(props: ReactSwimButtonProps) {
-  const { primary = `#2b65f4`, active, onClick, children, className, style, icon, loading } = props;
+  const {
+    primary = `#2b65f4`,
+    active,
+    onClick,
+    children,
+    className,
+    style,
+    icon,
+    loading,
+    duration = 250,
+  } = props;
   const waveRef = useRef(null);
   function animate(time: number | undefined) {
     requestAnimationFrame(animate);
@@ -24,7 +34,7 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
   function _onMouseEnter() {
     const coords = { width: 0 };
     const tween = new TWEEN.Tween(coords)
-      .to({ width: 100 }, 250)
+      .to({ width: 100 }, duration)
       .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
       .onUpdate(updateProperty);
     // @ts-ignore
@@ -36,7 +46,7 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
   function _onMouseLeave() {
     const coords = { width: 100 };
     const tween = new TWEEN.Tween(coords)
-      .to({ width: 0 }, 250)
+      .to({ width: 0 }, duration)
       .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
       .onUpdate(updateProperty);
     // @ts-ignore
@@ -131,6 +141,11 @@ export interface ReactSwimButtonProps {
    * @default           undefined
    */
   loading?: boolean;
+  /**
+   * @description       wave animation duration(ms)
+   * @default           250
+   */
+  duration?: number;
 }
 
 export default ReactSwimButton;
