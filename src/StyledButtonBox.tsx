@@ -9,7 +9,7 @@ const StyledButtonBox = styled.div`
   overflow: hidden;
   color: #858b9b;
   font-size: 14px;
-  line-height: 48px;
+  line-height: 20px;
   text-align: center;
   background-color: #fff;
   border-radius: 4px;

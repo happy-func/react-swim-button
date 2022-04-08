@@ -1,5 +1,5 @@
 import TWEEN from '@tweenjs/tween.js';
-import { ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import React, { CSSProperties, ReactElement, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import StyledButton from './StyledButton';
@@ -7,6 +7,12 @@ import StyledButtonBox from './StyledButtonBox';
 import StyledButtonIcon from './StyledButtonIcon';
 import StyledButtonWave from './StyledButtonWave';
 import StyledLoading from './StyledLoading';
+
+const GlobalStyle = createGlobalStyle<{ theme: { primary: string; active: boolean } }>`
+  :root{
+    --swim-button-primary: ${(props) => props.theme.primary}
+  }
+`;
 
 function ReactSwimButton(props: ReactSwimButtonProps) {
   const {
@@ -64,6 +70,7 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
   }, []);
   return (
     <ThemeProvider theme={{ primary, active }}>
+      <GlobalStyle />
       <StyledButtonBox
         className={clsx('swim-button-box', className, {
           ['swim-button-box-active']: active,

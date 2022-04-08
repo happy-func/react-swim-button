@@ -135,3 +135,11 @@ export default () => {
   );
 };
 ```
+
+### Custom duration
+
+<code src="./demo/duration.tsx"></code>
+
+### Plain Button
+
+<code src="./demo/PlainButton.tsx"><code>
