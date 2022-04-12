@@ -1,0 +1,40 @@
+.plain-button-wrap {
+  display: inline-block;
+  height: 32px;
+  border-radius: 5px;
+
+  .swim-button {
+    &-box {
+      height: 32px;
+      padding: 5px 16px;
+      overflow: visible;
+      color: #2a2f3c;
+      font-weight: 400;
+      line-height: 32px;
+      background-color: white;
+      box-shadow: none;
+
+      &:before {
+        border-color: rgba(188, 193, 205, 0.5);
+      }
+
+      &:hover {
+        color: #fff;
+        .swim-button-wave {
+          opacity: 1;
+        }
+        &:before {
+          border-color: #2b65f4;
+        }
+      }
+    }
+    &-wave {
+      background-color: #2b65f4;
+      opacity: 0;
+      transition-delay: 50ms;
+      transition-timing-function: ease-in-out;
+      transition-duration: 150ms;
+      transition-property: opacity;
+    }
+  }
+}

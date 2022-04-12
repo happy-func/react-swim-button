@@ -9,7 +9,7 @@ const StyledButtonBox = styled.div`
   overflow: hidden;
   color: #858b9b;
   font-size: 14px;
-  line-height: 48px;
+  line-height: 20px;
   text-align: center;
   background-color: #fff;
   border-radius: 4px;
@@ -27,7 +27,19 @@ const StyledButtonBox = styled.div`
     css`
       color: #fff;
       background-color: ${(props) => props.theme.primary};
-      border: 1px solid ${(props) => props.theme.primary};
+      &:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        border-color: ${props.theme.primary};
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 4px;
+        content: '';
+      }
       &:hover {
         color: ${(props) => props.theme.primary};
       }

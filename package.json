@@ -1,7 +1,7 @@
 {
   "name": "react-swim-button",
   "license": "MIT",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -51,7 +51,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/happy-func/react-swim-button.git"
+    "url": "git+https://github.com/happy-func/react-swim-button.git",
+    "branch": "main",
+    "platform": "github"
   },
   "files": [
     "es"
