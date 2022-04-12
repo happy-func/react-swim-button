@@ -6,6 +6,7 @@ export default function PlainButton() {
   return (
     <div className="plain-button-wrap">
       <ReactSwimButton
+        active
         icon={
           <svg
             width="21"
