@@ -27,14 +27,17 @@
           border-color: #2b65f4;
         }
       }
-    }
-    &-wave {
-      background-color: #2b65f4;
-      opacity: 0;
-      transition-delay: 50ms;
-      transition-timing-function: ease-in-out;
-      transition-duration: 150ms;
-      transition-property: opacity;
+
+      &-active {
+        .swim-button-wave {
+          background-color: #2b65f4;
+          opacity: 0;
+          transition-delay: 50ms;
+          transition-timing-function: ease-in-out;
+          transition-duration: 150ms;
+          transition-property: opacity;
+        }
+      }
     }
   }
 }

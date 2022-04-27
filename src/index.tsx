@@ -1,12 +1,9 @@
 import TWEEN from '@tweenjs/tween.js';
-import { ThemeProvider } from 'styled-components';
 import React, { CSSProperties, ReactElement, useEffect, useRef } from 'react';
-import clsx from 'clsx';
-import StyledButton from './StyledButton';
-import StyledButtonBox from './StyledButtonBox';
-import StyledButtonIcon from './StyledButtonIcon';
-import StyledButtonWave from './StyledButtonWave';
-import StyledLoading from './StyledLoading';
+
+function clsx(...classnames: (string | undefined | boolean)[]) {
+  return classnames.filter((item) => !!item).join(' ');
+}
 
 function ReactSwimButton(props: ReactSwimButtonProps) {
   const {
@@ -63,36 +60,31 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
     requestAnimationFrame(animate);
   }, []);
   return (
-    <ThemeProvider theme={{ primary, active }}>
-      <StyledButtonBox
-        className={clsx('swim-button-box', className, {
-          ['swim-button-box-active']: active,
-        })}
-        onMouseEnter={_onMouseEnter}
-        onMouseLeave={_onMouseLeave}
-        onClick={_onClick}
-        style={style}
-      >
-        <StyledButtonWave ref={waveRef} className={clsx('swim-button-wave')} style={{ left: 0 }} />
-        <StyledButton className={clsx('swim-button')}>
-          {icon && !loading && (
-            <StyledButtonIcon className={clsx('swim-button-icon')}>{icon}</StyledButtonIcon>
-          )}
-          {loading && (
-            <StyledButtonIcon className={clsx('swim-button-icon')}>
-              <Loading />
-            </StyledButtonIcon>
-          )}
-          <span className="swim-button-text">{children}</span>
-        </StyledButton>
-      </StyledButtonBox>
-    </ThemeProvider>
+    <div
+      className={clsx('swim-button-box', className, active && `swim-button-box-active`)}
+      onMouseEnter={_onMouseEnter}
+      onMouseLeave={_onMouseLeave}
+      onClick={_onClick}
+      // @ts-ignore
+      style={{ ...style, [`--primary-color`]: primary }}
+    >
+      <div ref={waveRef} className={clsx('swim-button-wave')} style={{ left: 0 }} />
+      <span className={clsx('swim-button')}>
+        {icon && !loading && <span className={clsx('swim-button-icon')}>{icon}</span>}
+        {loading && (
+          <span className={clsx('swim-button-icon')}>
+            <Loading />
+          </span>
+        )}
+        <span className="swim-button-text">{children}</span>
+      </span>
+    </div>
   );
 }
 
 function Loading() {
   return (
-    <StyledLoading role="img" className={clsx('swim-button-loading')}>
+    <span role="img" className={clsx('swim-button-loading')}>
       <svg
         viewBox="0 0 1024 1024"
         focusable="false"
@@ -104,7 +96,7 @@ function Loading() {
       >
         <path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z" />
       </svg>
-    </StyledLoading>
+    </span>
   );
 }
 
