@@ -1,5 +1,4 @@
-import TWEEN from '@tweenjs/tween.js';
-import React, { CSSProperties, ReactElement, useEffect, useRef } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 
 function clsx(...classnames: (string | undefined | boolean)[]) {
   return classnames.filter((item) => !!item).join(' ');
@@ -17,58 +16,17 @@ function ReactSwimButton(props: ReactSwimButtonProps) {
     loading,
     duration = 250,
   } = props;
-  const waveRef = useRef(null);
-  function animate(time: number | undefined) {
-    requestAnimationFrame(animate);
-    TWEEN.update(time);
-  }
-  function updateProperty(coords: { width: number }) {
-    if (waveRef.current) {
-      // @ts-ignore
-      waveRef.current.style.setProperty('width', `${coords.width}%`);
-    }
-  }
-  function _onMouseEnter() {
-    const coords = { width: 0 };
-    const tween = new TWEEN.Tween(coords)
-      .to({ width: 100 }, duration)
-      .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
-      .onUpdate(updateProperty);
-    // @ts-ignore
-    waveRef.current.style.removeProperty('right');
-    // @ts-ignore
-    waveRef.current.style.setProperty('left', `0px`);
-    tween.start();
-  }
-  function _onMouseLeave() {
-    const coords = { width: 100 };
-    const tween = new TWEEN.Tween(coords)
-      .to({ width: 0 }, duration)
-      .easing(TWEEN.Easing.Cubic.InOut) // Use an easing function to make the animation smooth.
-      .onUpdate(updateProperty);
-    // @ts-ignore
-    waveRef.current.style.removeProperty('left');
-    // @ts-ignore
-    waveRef.current.style.setProperty('right', `0px`);
-    tween.start();
-  }
   function _onClick() {
     if (loading) return;
     onClick && onClick();
   }
-  useEffect(() => {
-    requestAnimationFrame(animate);
-  }, []);
   return (
     <div
       className={clsx('swim-button-box', className, active && `swim-button-box-active`)}
-      onMouseEnter={_onMouseEnter}
-      onMouseLeave={_onMouseLeave}
       onClick={_onClick}
       // @ts-ignore
-      style={{ ...style, [`--primary-color`]: primary }}
+      style={{ ...style, [`--primary-color`]: primary, [`--swim-duration`]: `${duration}ms` }}
     >
-      <div ref={waveRef} className={clsx('swim-button-wave')} style={{ left: 0 }} />
       <span className={clsx('swim-button')}>
         {icon && !loading && <span className={clsx('swim-button-icon')}>{icon}</span>}
         {loading && (

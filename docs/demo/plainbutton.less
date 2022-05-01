@@ -15,27 +15,18 @@
       box-shadow: none;
 
       &:before {
+        background-color: var(--primary-color);
+      }
+
+      &:after {
         border-color: rgba(188, 193, 205, 0.5);
+        opacity: 1;
       }
 
       &:hover {
         color: #fff;
-        .swim-button-wave {
-          opacity: 1;
-        }
-        &:before {
+        &:after {
           border-color: #2b65f4;
-        }
-      }
-
-      &-active {
-        .swim-button-wave {
-          background-color: #2b65f4;
-          opacity: 0;
-          transition-delay: 50ms;
-          transition-timing-function: ease-in-out;
-          transition-duration: 150ms;
-          transition-property: opacity;
         }
       }
     }
