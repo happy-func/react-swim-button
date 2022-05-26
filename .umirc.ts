@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import * as path from 'path';
 
 const repo = 'react-swim-button';
 
@@ -12,7 +13,8 @@ export default defineConfig({
   },
   hash: true,
   webpack5: {},
-  // 通过 [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain) 的 API 修改 webpack 配置。
+  cssModulesTypescriptLoader: {},
+  // @ts-ignore
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     memo.cache = {
       type: 'filesystem',

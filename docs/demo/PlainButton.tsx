@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 import './plainbutton.less';
 
 export default function PlainButton() {

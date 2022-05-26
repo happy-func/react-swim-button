@@ -22,6 +22,7 @@ $ yarn add react-swim-button
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 const texts = ['React', 'Swim', 'Button'];
 
@@ -50,6 +51,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 export default () => {
   const [activeAt, setActiveAt] = useState(0);
@@ -76,6 +78,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 const texts = [
   {

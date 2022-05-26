@@ -1,5 +1,9 @@
 # react-swim-button
 
+![version](https://img.shields.io/github/package-json/v/happy-func/react-swim-button/main) ![typescript](https://img.shields.io/npm/types/react-swim-button) ![esm](https://img.shields.io/static/v1?label=build&message=esm&color=blue) ![npm bundle size (version)](https://img.shields.io/bundlephobia/min/react-swim-button/latest) ![GitHub Repo stars](https://img.shields.io/github/stars/happy-func/sudoku.js?style=social)
+
+Zero dependencies
+
 ## Getting Started
 
 Install dependencies,
@@ -18,6 +22,7 @@ $ yarn add react-swim-button
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 const texts = ['React', 'Swim', 'Button'];
 
@@ -46,6 +51,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 export default () => {
   const [activeAt, setActiveAt] = useState(0);
@@ -71,6 +77,7 @@ export default () => {
 ```tsx
 import React, { useState } from 'react';
 import ReactSwimButton from 'react-swim-button';
+import 'react-swim-button/es/style';
 
 const texts = [
   {
