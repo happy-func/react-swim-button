@@ -1,6 +1,6 @@
 # react-swim-button
 
-![version](https://img.shields.io/github/package-json/v/happy-func/react-swim-button/main) ![typescript](https://img.shields.io/npm/types/react-swim-button) ![esm](https://img.shields.io/static/v1?label=build&message=esm&color=blue) ![npm bundle size (version)](https://img.shields.io/bundlephobia/min/react-swim-button/2.0.0) ![GitHub Repo stars](https://img.shields.io/github/stars/happy-func/sudoku.js?style=social)
+![version](https://img.shields.io/github/package-json/v/happy-func/react-swim-button/main) ![typescript](https://img.shields.io/npm/types/react-swim-button) ![esm](https://img.shields.io/static/v1?label=build&message=esm&color=blue) ![npm bundle size (version)](https://img.shields.io/bundlephobia/min/react-swim-button/2.0.0) ![GitHub Repo stars](https://img.shields.io/github/stars/happy-func/react-swim-button?style=social)
 
 Zero dependencies
 
